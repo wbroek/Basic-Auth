@@ -1,9 +1,8 @@
 <?php
 /**
  * Plugin Name: JSON Basic Authentication
- * Description: Basic Authentication handler for the JSON API, used for development and debugging purposes
- * Author: WordPress API Team
- * Author URI: https://github.com/WP-API
+ * Description: Basic Authentication handler for the JSON API with email login support
+ * Author: WordPress API Team + wbroek for email adjustment
  * Version: 0.1
  * Plugin URI: https://github.com/WP-API/Basic-Auth
  */
@@ -34,6 +33,12 @@ function json_basic_auth_handler( $user ) {
 	 */
 	remove_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
 
+	if(is_email($username) )
+    {
+        $user = get_user_by_email($username);
+        if ($user) $username = $user->user_login;
+    }
+    
 	$user = wp_authenticate( $username, $password );
 
 	add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );

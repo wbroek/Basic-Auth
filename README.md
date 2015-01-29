@@ -1,9 +1,9 @@
 # Basic Authentication handler
 This plugin adds Basic Authentication to a WordPress site.
+Adjusted so email adres also can be used instead of username
 
 Note that this plugin requires sending your username and password with every
-request, and should only be used for development and testing. We strongly
-recommend using the [OAuth 1.0a][oauth] authentication handler for production.
+request We strongly recommend using the [OAuth 1.0a][oauth] authentication handler.
 
 ## Installing
 1. Download the plugin into your plugins directory
